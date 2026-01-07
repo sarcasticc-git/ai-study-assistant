@@ -44,12 +44,12 @@ This project focuses on improving learning efficiency using AI-assisted text pro
 
 ## Screenshots
 ### 🖥️ User Interface
-[![AI Study Assistant UI](screenshots-ui.png)](screenshots-ui.png)
+[![AI Study Assistant UI](screenshots/ui.png)](screenshots/ui.png)
 
 ### 📊 Generated Output
-[![Output Example 1](screenshots-output_1.png)](screenshots-output_1.png)
+[![Output Example 1](screenshots/output_1.png)](screenshots/output_1.png)
 
-[![Output Example 2](screenshots-output_2.png)](screenshots-output_2.png)
+[![Output Example 2](screenshots/output_2.png)](screenshots/output_2.png)
 ---
 
 ## Author
