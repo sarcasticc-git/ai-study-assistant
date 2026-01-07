@@ -1,6 +1,7 @@
 import os
 import sys
-from groq import Groq
+from groq_sdk import Groq
+
 
 # Initialize Groq client using Streamlit Secrets
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
