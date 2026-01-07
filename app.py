@@ -17,10 +17,10 @@ if st.button("✨ Generate Output"):
             mcqs = generate_mcqs(notes)
             exams = generate_exam_questions(notes)
 
-        st.subheader("📘 Summary")
+        st.subheader("📝 Summary")
         st.write(summary)
 
-        st.subheader("📝 MCQs")
+        st.subheader("🧠 MCQs")
         st.write(mcqs)
 
         st.subheader("🎓 Exam / Viva Questions")
