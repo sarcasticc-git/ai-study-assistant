@@ -1,49 +1,37 @@
 import os
-from groq import Groq
+import requests
 
-# Initialize Groq client
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
+MODEL = "llama3-8b-8192"
+
+def call_llm(system_prompt, user_prompt):
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "model": MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "temperature": 0.4
+    }
+
+    response = requests.post(GROQ_URL, headers=headers, json=payload)
+    response.raise_for_status()
+    return response.json()["choices"][0]["message"]["content"]
+
 
 def summarize_notes(text):
-    response = client.chat.completions.create(
-        model="llama3-8b-8192",
-        messages=[
-            {"role": "system", "content": "You summarize study notes clearly and concisely."},
-            {"role": "user", "content": f"Summarize the following notes:\n{text}"}
-        ],
-        temperature=0.3
+    return call_llm(
+        "You summarize study notes clearly and concisely.",
+        f"Summarize the following notes:\n{text}"
     )
-    return response.choices[0].message.content
 
 
 def generate_mcqs(text):
-    response = client.chat.completions.create(
-        model="llama3-8b-8192",
-        messages=[
-            {"role": "system", "content": "You create exam-oriented multiple choice questions."},
-            {"role": "user", "content": f"""
-Create 5 MCQs from the following notes.
-Each MCQ should have 4 options (A, B, C, D) and clearly mention the correct answer.
-
-{text}
-"""}
-        ],
-        temperature=0.4
-    )
-    return response.choices[0].message.content
-
-
-def generate_exam_questions(text):
-    response = client.chat.completions.create(
-        model="llama3-8b-8192",
-        messages=[
-            {"role": "system", "content": "You create university exam and viva questions."},
-            {"role": "user", "content": f"""
-Generate 5 important exam or viva questions from the following notes:
-
-{text}
-"""}
-        ],
-        temperature=0.4
-    )
-    return response.choices[0].message.content
+    return call_llm(
+        "You create exam
