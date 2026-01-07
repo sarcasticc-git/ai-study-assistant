@@ -53,6 +53,16 @@ This project focuses on improving learning efficiency using AI-assisted text pro
 [![Output Example 2](screenshots/output_2.png)](screenshots/output_2.png)
 ---
 
+
+## ▶ How to Run Locally
+
+```bash
+git clone https://github.com/your-username/ai-study-assistant
+cd ai-study-assistant
+pip install -r requirements.txt
+streamlit run app.py
+
+
 ## Author
 **Swapnil Tiwari**  
 B.Sc. IT (Hons.), Parul University
