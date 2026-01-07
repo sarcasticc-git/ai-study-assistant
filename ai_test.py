@@ -13,7 +13,7 @@ HEADERS = {
 
 def call_llm(system_prompt, user_prompt):
     payload = {
-        "model": "llama3-70b-8192",
+        "model": "llama-3.1-70b-versatile",
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
