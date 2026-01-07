@@ -1,4 +1,4 @@
 streamlit
-groq
+groq-sdk
 python-dotenv
 requests
