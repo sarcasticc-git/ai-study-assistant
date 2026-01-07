@@ -11,15 +11,16 @@ HEADERS = {
 }
 
 
-def call_llm(system_prompt, user_prompt):
-    payload = {
-        "model": "llama-3.1-70b-versatile",
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ],
-        "temperature": 0.3
-    }
+payload = {
+    "model": "llama-3.1-70b-versatile",
+    "messages": [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt}
+    ],
+    "temperature": 0.3,
+    "max_tokens": 512
+}
+
 
     response = requests.post(GROQ_URL, headers=HEADERS, json=payload)
 
