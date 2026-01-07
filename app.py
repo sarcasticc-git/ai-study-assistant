@@ -1,9 +1,5 @@
 import streamlit as st
-from ai_test import (
-    summarize_notes,
-    generate_mcqs,
-    generate_exam_questions
-)
+from ai_test import summarize_notes, generate_mcqs, generate_exam_questions
 
 st.set_page_config(page_title="AI Study Assistant", layout="centered")
 
@@ -13,19 +9,19 @@ st.write("Paste your study notes below and generate summaries, MCQs, and exam qu
 notes = st.text_area("📄 Paste your notes here", height=250)
 
 if st.button("✨ Generate Output"):
-    if notes.strip() == "":
+    if not notes.strip():
         st.warning("Please paste some notes first.")
     else:
         with st.spinner("AI is thinking..."):
             summary = summarize_notes(notes)
             mcqs = generate_mcqs(notes)
-            questions = generate_exam_questions(notes)
+            exams = generate_exam_questions(notes)
 
-        st.subheader("📝 Summary")
+        st.subheader("📘 Summary")
         st.write(summary)
 
-        st.subheader("🧠 MCQs")
+        st.subheader("📝 MCQs")
         st.write(mcqs)
 
         st.subheader("🎓 Exam / Viva Questions")
-        st.write(questions)
+        st.write(exams)
