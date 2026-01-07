@@ -17,7 +17,6 @@ This project focuses on improving learning efficiency using AI-assisted text pro
 - Creates important exam and viva questions
 - Simple and clean user interface
 
----
 
 ## Tech Stack
 - Python
