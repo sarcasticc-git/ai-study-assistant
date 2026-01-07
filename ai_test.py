@@ -2,27 +2,31 @@ import os
 import requests
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-MODEL = "llama3-8b-8192"
+
+HEADERS = {
+    "Authorization": f"Bearer {GROQ_API_KEY}",
+    "Content-Type": "application/json"
+}
 
 
 def call_llm(system_prompt, user_prompt):
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
     payload = {
-        "model": MODEL,
+        "model": "llama3-8b-8192",
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        "temperature": 0.4
+        "temperature": 0.3
     }
 
-    response = requests.post(GROQ_URL, headers=headers, json=payload)
-    response.raise_for_status()
+    response = requests.post(GROQ_URL, headers=HEADERS, json=payload)
+
+    # Debug-friendly error
+    if response.status_code != 200:
+        raise Exception(f"Groq API Error {response.status_code}: {response.text}")
+
     return response.json()["choices"][0]["message"]["content"]
 
 
@@ -35,13 +39,13 @@ def summarize_notes(text):
 
 def generate_mcqs(text):
     return call_llm(
-        "You create exam-oriented MCQs.",
-        f"Create 5 MCQs with 4 options and answers from these notes:\n{text}"
+        "You create exam-oriented multiple choice questions.",
+        f"Create 5 MCQs with 4 options and correct answers from:\n{text}"
     )
 
 
 def generate_exam_questions(text):
     return call_llm(
         "You create university exam and viva questions.",
-        f"Generate 5 exam or viva questions from these notes:\n{text}"
+        f"Generate 5 important exam or viva questions from:\n{text}"
     )
