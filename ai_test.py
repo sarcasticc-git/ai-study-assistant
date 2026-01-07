@@ -46,8 +46,19 @@ def generate_exam_questions(text):
     return response["message"]["content"]
 
 
-print("Paste your notes (press Enter, then Ctrl+Z, then Enter on Windows):")
-notes = ""
+import sys
+
+def read_notes():
+    # If input is coming from another program (Streamlit)
+    if not sys.stdin.isatty():
+        return sys.stdin.read()
+    else:
+        # Terminal usage
+        print("Paste your notes (press Enter, then Ctrl+Z, then Enter on Windows):")
+        return sys.stdin.read()
+
+notes = read_notes()
+
 while True:
     try:
         line = input()
@@ -55,11 +66,11 @@ while True:
     except EOFError:
         break
 
-print("\n🔹 SUMMARY 🔹\n")
+print("\n=== SUMMARY ===\n")
 print(summarize_notes(notes))
 
-print("\n🔹 MCQs 🔹\n")
+print("\n=== MCQs ===\n")
 print(generate_mcqs(notes))
 
-print("\n🔹 EXAM / VIVA QUESTIONS 🔹\n")
+print("\n=== EXAM / VIVA QUESTIONS ===\n")
 print(generate_exam_questions(notes))
