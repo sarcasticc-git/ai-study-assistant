@@ -43,7 +43,12 @@ This project focuses on improving learning efficiency using AI-assisted text pro
 ---
 
 ## Screenshots
-(Add screenshots of the application output here)
+### User Interface
+![UI](screenshots/ui.png)
+
+### Generated Output
+![Output](screenshots/output_1.png)
+![Output](screenshots/output_2.png)
 
 ---
 
