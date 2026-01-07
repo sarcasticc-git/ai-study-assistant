@@ -5,6 +5,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL = "llama3-8b-8192"
 
+
 def call_llm(system_prompt, user_prompt):
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
@@ -34,4 +35,13 @@ def summarize_notes(text):
 
 def generate_mcqs(text):
     return call_llm(
-        "You create exam
+        "You create exam-oriented MCQs.",
+        f"Create 5 MCQs with 4 options and answers from these notes:\n{text}"
+    )
+
+
+def generate_exam_questions(text):
+    return call_llm(
+        "You create university exam and viva questions.",
+        f"Generate 5 exam or viva questions from these notes:\n{text}"
+    )
