@@ -43,6 +43,7 @@ This project focuses on improving learning efficiency using AI-assisted text pro
 ---
 
 ## Screenshots
+
 ### 🖥️ User Interface
 [![AI Study Assistant UI](screenshots/ui.png)](screenshots/ui.png)
 
